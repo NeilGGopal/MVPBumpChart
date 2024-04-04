@@ -24,6 +24,7 @@ function BumpChart() {
             if (cells.length) {
                 for (const cell of cells) {
                     cell.style.fill = "rgb(255, 255, 255)"
+                    cell.style.fontSize = "2vh"
                 }
                 clearInterval(cellsInterval)
             }
