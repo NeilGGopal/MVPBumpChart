@@ -1,8 +1,40 @@
 import { ResponsiveBump } from '@nivo/bump'
 import data from './assets/data.json'
 import './BumpChart.css'
+import { useEffect, useRef, useState } from 'react'
 
 function BumpChart() {
+
+    const [tableLoaded, setTableLoaded] = useState(false);
+
+    const tableRef = useRef(HTMLElement);
+
+    useEffect(() => {
+        const table = document.getElementById("chart")
+        if (table) {
+            tableRef.current = table
+            setTableLoaded(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        let cellsInterval
+        const checkCells = () => {
+            const cells = tableRef.current.getElementsByTagName("text");
+            if (cells.length) {
+                for (const cell of cells) {
+                    cell.style.fill = "rgb(255, 255, 255)"
+                }
+                clearInterval(cellsInterval)
+            }
+        };
+
+        if (tableLoaded) {
+            cellsInterval = setInterval(checkCells)
+        }
+
+        return () => clearInterval(cellsInterval)
+    }, [tableLoaded])
 
     return (
         <>
@@ -43,7 +75,7 @@ function BumpChart() {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'ranking',
+                legend: 'Ranking',
                 legendPosition: 'middle',
                 legendOffset: -40,
                 truncateTickAt: 0
