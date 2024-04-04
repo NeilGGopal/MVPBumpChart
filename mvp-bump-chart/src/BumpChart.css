@@ -5,3 +5,7 @@ div#chart {
     height: 80vh;
     width: 100vw;
 }
+
+svg text {
+    font-size: 30px;
+}

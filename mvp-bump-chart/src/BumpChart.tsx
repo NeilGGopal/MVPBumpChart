@@ -17,7 +17,7 @@ function BumpChart() {
             pointSize={10}
             activePointSize={16}
             inactivePointSize={0}
-            pointColor={{ theme: 'background' }}
+            pointColor={{ from: 'serie.color', modifiers: [] }}
             pointBorderWidth={3}
             activePointBorderWidth={3}
             pointBorderColor={{ from: 'serie.color' }}
